@@ -16,7 +16,6 @@ export default React.createClass( {
   	_changeEvent: function changeEvent( index, key ) {
   		var that = this;
   		return function inputChangeEvent( event ) {  			
-  			var newValue = event.target.value;
   			var row = that.state.content;
   			row[ index ][ key ] = event.target.value;  			
   			appActions.updateRow( row, index );
@@ -52,15 +51,15 @@ export default React.createClass( {
 	},
 	_editableItem: function renderEditableItem ( key, id, index ) {
 		return (
-			<input id={"input-" + id } type="text" className="editable" value={this.state.content[ index ][ key ]} onChange={this._changeEvent.call( this, index, key )} />
+			<input id={"input-" + key + id } type="text" className="editable" value={this.state.content[ index ][ key ]} onChange={this._changeEvent.call( this, index, key )} />
 		);
 	},
 	render: function renderDiveTable () {
 		const items   = this.state.content;		
 		return (
-			<div className="dive-table">
-				<div className="add-row-container"><a href="javascript:void(0)" className="add-row" onClick={this._addRowHandler}>+</a></div>			
-				<table id="diveTable">
+			<div id={this.props.id} className="dive-table">
+				<div className="add-row-container"><a id={this.props.id  + '-add-row'} href="javascript:void(0)" className="add-row" onClick={this._addRowHandler}>+</a></div>			
+				<table id={'dive-table-' + this.props.id}>
 					<thead>
 						<tr key="tableHeader">
 							<th></th>
@@ -74,24 +73,24 @@ export default React.createClass( {
 			        <tbody>
 			        	{
 			        		items.map( ( item, index ) =>
-			        			<tr key={index}>
+			        			<tr id={'data-row-' + index} className={item.editMode ? 'data-row edit-mode' : 'data-row'} key={index}>
 					          		<td className="row-actions">
-					          			<a href="javascript:void(0)" className={item.editMode ? 'delete-row disabled' : 'delete-row'} onClick={this._deleteRowHandler.bind( null, index, item.editMode )}>-</a>
-					          			<a href="javascript:void(0)" className="edit-row" onClick={this._editRowHandler.bind( null, index, 'location' )}>&#x270E;</a>
+					          			<a id={'delete-row-' + item.id} href="javascript:void(0)" className={item.editMode ? 'delete-row disabled' : 'delete-row'} onClick={this._deleteRowHandler.bind( null, index, item.editMode )}>-</a>
+					          			<a id={'edit-row-'   + item.id} href="javascript:void(0)" className="edit-row" onClick={this._editRowHandler.bind( null, index, 'location' )}><i className="pencil-icon"></i></a>
 					          		</td>
-					          		<td data-header="Location">				         
+					          		<td className="data-column-location" data-header="Location">				         
 					          			{ item.editMode ? this._editableItem( 'location', item.id, index ) : item.location }
 					          		</td>
-					          		<td data-header="Dive Time">
+					          		<td className="data-column-time" data-header="Dive Time">
 					          			{ item.editMode ? this._editableItem( 'time', item.id, index ) : item.time }
 					          		</td>
-					          		<td data-header="Depth">
+					          		<td className="data-column-depth" data-header="Depth">
 					          			{ item.editMode ? this._editableItem( 'depth', item.id, index ) : item.depth }
 					          		</td>
-					          		<td data-header="mixture">
+					          		<td className="data-column-mixture" data-header="mixture">
 					          			{ item.editMode ? this._editableItem( 'mixture', item.id, index ) : item.mixture }
 					          		</td>
-					          		<td data-header="description">
+					          		<td className="data-column-description" data-header="description">
 					          			{ item.editMode ? this._editableItem( 'description', item.id, index ) : item.description }
 					          		</td>
 					          	</tr>	

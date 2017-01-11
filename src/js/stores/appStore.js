@@ -10,10 +10,6 @@ var _store = [
 	{ id: 4, location: 'Yucatan, Mexico Cenote Dive', time: '60 min', depth: '50ft', mixture: 'Regular', description: 'The halocline was the coolest thing I\'ve ever seen', editMode: false},
 ];
 
-function updateContent ( index, remove ) {
-	_store = content;
-}
-
 var appStore = Object.assign( {}, events.EventEmitter.prototype, {
 	addChangeListener: function appStoreCallback( cb ){
     	this.on( appConstants.CHANGE_EVENT, cb );
