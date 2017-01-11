@@ -1,0 +1,109 @@
+@disable-color: #A9A9A9;
+@enable-color:  #00AA66;
+@delete-color:  #AA0066;
+@white: #FFFFFF;
+@black: #111111;
+@blue: #6AAFE4;
+@action-button-font-size: 2rem;
+@padding: 0.375rem;
+@tableBorder: 0.0625rem solid #999;
+.columnStyles {
+		text-align: left;
+		padding: @padding;
+		border: @tableBorder;
+	}
+.dive-table {	
+  	.add-row-container {
+  		width: 100%;
+  		text-align: center;  		
+  	}
+  	.add-row {
+  		font-size: @action-button-font-size;
+  		color: #00AA66;
+  		text-decoration: none;
+  	}
+	table {
+  		width: 100%;
+  		border-collapse: collapse;
+  		color: @black;
+  		tr {
+			padding-bottom: 1rem;
+			&:nth-of-type(odd) {
+				background: rgba(106,175,228,0.33)
+			}
+			
+			th {
+				.columnStyles;
+				background: #777777;
+			}
+			td {
+				.columnStyles;
+				word-wrap: break-word;
+
+			}
+			.row-actions {
+				font-size: @action-button-font-size;
+				a {
+					text-decoration: none;
+					color: @enable-color;
+
+					&.delete-row {
+						color: @delete-color;
+						margin-right: 0.625rem;
+					}
+					&.disabled {
+						color: @disable-color;
+					}
+				}
+			}
+			.editable {
+				width: 95%;
+			}
+		}
+  	}  	
+}
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+		.dive-table {
+			/* Force table to not be like tables anymore */
+			table, thead, tbody, th, td, tr { 
+				display: block; 
+			}
+			
+			table {
+				/* Hide table headers (but not display: none;, for accessibility) */
+				thead tr { 
+					position: absolute;
+					top: -9999px;
+					left: -9999px;
+				}
+				
+				tr { 
+					border: @tableBorder;
+					td { 
+						/* Behave  like a "row" */
+						border: none;						
+						position: relative;						
+						&:before {
+							/* Now like a table header */
+							position: absolute;
+							/* Top/left values mimic padding */
+							top: @padding;;
+							left: @padding;;
+							width: 45%; 
+							padding-right: 0.625rem; 
+							white-space: nowrap;
+							/* Label the data*/
+							content: attr(data-header); 
+						}
+						&:not(.row-actions) {
+							padding-left: 50%;
+						}
+						&:not(:last-child) {
+							border-bottom: @tableBorder;
+						}
+					}
+				}				
+			}
+			
+		}
+	}

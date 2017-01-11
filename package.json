@@ -1,0 +1,29 @@
+{
+  "name": "ScubaLog",
+  "version": "1.0.0",
+  "description": "A simple Scuba diving log book",
+  "scripts": {
+    "build": "webpack --optimize-minimize;lessc src/less/app.less --autoprefix --clean-css=\"--s1\" assets/css/app.css",
+    "dev-build": "webpack; lessc src/less/app.less --autoprefix assets/css/app.css",
+    "server": "python -m SimpleHTTPServer 8000",
+    "test": "./nightwatch"
+  },
+  "author": "Marcus Leeper",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "flux": "^3.1.0",
+    "jshint": "^2.9.4",
+    "jshint-loader": "^0.8.3",
+    "nightwatch": "^0.9.9",
+    "node-libs-browser": "^2.0.0",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}

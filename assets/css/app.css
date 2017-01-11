@@ -1,0 +1,166 @@
+.columns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  margin: 0 0.9375rem;
+}
+.left-sidebar {
+  width: 5%;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  padding: 0.9375rem;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
+.main-content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  padding: 0.9375rem;
+  width: 90%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 80%;
+          flex: 0 0 80%;
+}
+.right-sidebar {
+  width: 5%;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+  padding: 0.9375rem;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20%;
+          flex: 0 0 20%;
+}
+@media screen and (min-width: 768px) {
+  .left-sidebar {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+    margin-right: 0.46875rem;
+  }
+  .main-content {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+    margin-left: 0.46875rem;
+    margin-right: 0.46875rem;
+  }
+  .right-sidebar {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+    margin-left: 0.46875rem;
+  }
+}
+.columnStyles {
+  text-align: left;
+  padding: 0.375rem;
+  border: 0.0625rem solid #999;
+}
+.dive-table .add-row-container {
+  width: 100%;
+  text-align: center;
+}
+.dive-table .add-row {
+  font-size: 2rem;
+  color: #00AA66;
+  text-decoration: none;
+}
+.dive-table table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #111111;
+}
+.dive-table table tr {
+  padding-bottom: 1rem;
+}
+.dive-table table tr:nth-of-type(odd) {
+  background: rgba(106, 175, 228, 0.33);
+}
+.dive-table table tr th {
+  text-align: left;
+  padding: 0.375rem;
+  border: 0.0625rem solid #999;
+  background: #777777;
+}
+.dive-table table tr td {
+  text-align: left;
+  padding: 0.375rem;
+  border: 0.0625rem solid #999;
+  word-wrap: break-word;
+}
+.dive-table table tr .row-actions {
+  font-size: 2rem;
+}
+.dive-table table tr .row-actions a {
+  text-decoration: none;
+  color: #00AA66;
+}
+.dive-table table tr .row-actions a.delete-row {
+  color: #AA0066;
+  margin-right: 0.625rem;
+}
+.dive-table table tr .row-actions a.disabled {
+  color: #A9A9A9;
+}
+.dive-table table tr .editable {
+  width: 95%;
+}
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+  .dive-table {
+    /* Force table to not be like tables anymore */
+  }
+  .dive-table table,
+  .dive-table thead,
+  .dive-table tbody,
+  .dive-table th,
+  .dive-table td,
+  .dive-table tr {
+    display: block;
+  }
+  .dive-table table {
+    /* Hide table headers (but not display: none;, for accessibility) */
+  }
+  .dive-table table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .dive-table table tr {
+    border: 0.0625rem solid #999;
+  }
+  .dive-table table tr td {
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+  }
+  .dive-table table tr td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 0.375rem;
+    left: 0.375rem;
+    width: 45%;
+    padding-right: 0.625rem;
+    white-space: nowrap;
+    /* Label the data*/
+    content: attr(data-header);
+  }
+  .dive-table table tr td:not(.row-actions) {
+    padding-left: 50%;
+  }
+  .dive-table table tr td:not(:last-child) {
+    border-bottom: 0.0625rem solid #999;
+  }
+}
