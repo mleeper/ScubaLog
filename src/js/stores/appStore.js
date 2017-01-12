@@ -8,6 +8,7 @@ var _store = [
 	{ id: 2, location: 'Belize - Ambergris Key', time: '70 min', depth: '35ft', mixture: 'Regular', description: 'Eagle Ray!!', editMode: false},
 	{ id: 3, location: 'Bahamas - Freeport', time: '40 min', depth: '40ft', mixture: 'Regular', description: 'Reef Shark and Baracuda!! Perfect day of warm water diving', editMode: false},
 	{ id: 4, location: 'Yucatan, Mexico Cenote Dive', time: '60 min', depth: '50ft', mixture: 'Regular', description: 'The halocline was the coolest thing I\'ve ever seen', editMode: false},
+	{ id: 5, location: 'Cancun - Isla Mujeres', time: '120 min', depth: '45ft', mixture: 'Regular', description: 'Dove from the beach with the pelicans.  Underwater statues, clear, warm water, and sting rays' }
 ];
 
 var appStore = Object.assign( {}, events.EventEmitter.prototype, {

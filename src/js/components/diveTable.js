@@ -1,7 +1,17 @@
 import React      from 'react';
+import Editable   from './editableRegion';
 import appStore   from '../stores/appStore';
 import appActions from '../actions/appActions';
 
+const KEYS = {
+	location: 'location',
+	time: 'time',
+	depth: 'depth',
+	mixture: 'mixture',
+	description: 'description'
+};
+
+// TODO: Add client side rollback feature using a stack
 export default React.createClass( {
 	getInitialState: function getInitialState () {
 		return {
@@ -49,11 +59,6 @@ export default React.createClass( {
 			appActions.deleteRow( index );
 		}
 	},
-	_editableItem: function renderEditableItem ( key, id, index ) {
-		return (
-			<input id={"input-" + key + id } type="text" className="editable" value={this.state.content[ index ][ key ]} onChange={this._changeEvent.call( this, index, key )} />
-		);
-	},
 	render: function renderDiveTable () {
 		const items   = this.state.content;		
 		return (
@@ -76,22 +81,22 @@ export default React.createClass( {
 			        			<tr id={'data-row-' + index} className={item.editMode ? 'data-row edit-mode' : 'data-row'} key={index}>
 					          		<td className="row-actions">
 					          			<a id={'delete-row-' + item.id} href="javascript:void(0)" className={item.editMode ? 'delete-row disabled' : 'delete-row'} onClick={this._deleteRowHandler.bind( null, index, item.editMode )}>-</a>
-					          			<a id={'edit-row-'   + item.id} href="javascript:void(0)" className="edit-row" onClick={this._editRowHandler.bind( null, index, 'location' )}><i className="pencil-icon"></i></a>
+					          			<a id={'edit-row-'   + item.id} href="javascript:void(0)" className="edit-row" onClick={this._editRowHandler.bind( null, index, KEYS.location )}><i className="pencil-icon"></i></a>
 					          		</td>
 					          		<td className="data-column-location" data-header="Location">				         
-					          			{ item.editMode ? this._editableItem( 'location', item.id, index ) : item.location }
+					          			<Editable keyName={KEYS.location} id={item.id} index={index} value={item.location} editMode={item.editMode} changeEvent={this._changeEvent.call( this, index, KEYS.location )} />
 					          		</td>
 					          		<td className="data-column-time" data-header="Dive Time">
-					          			{ item.editMode ? this._editableItem( 'time', item.id, index ) : item.time }
+					          			<Editable keyName={KEYS.time} id={item.id} index={index} value={item.time} editMode={item.editMode} changeEvent={this._changeEvent.call( this, index, KEYS.time )} />
 					          		</td>
 					          		<td className="data-column-depth" data-header="Depth">
-					          			{ item.editMode ? this._editableItem( 'depth', item.id, index ) : item.depth }
+					          			<Editable keyName={KEYS.depth} id={item.id} index={index} value={item.depth} editMode={item.editMode} changeEvent={this._changeEvent.call( this, index, KEYS.depth )} />
 					          		</td>
 					          		<td className="data-column-mixture" data-header="mixture">
-					          			{ item.editMode ? this._editableItem( 'mixture', item.id, index ) : item.mixture }
+					          			<Editable keyName={KEYS.mixture} id={item.id} index={index} value={item.mixture} editMode={item.editMode} changeEvent={this._changeEvent.call( this, index, KEYS.mixture )} />
 					          		</td>
 					          		<td className="data-column-description" data-header="description">
-					          			{ item.editMode ? this._editableItem( 'description', item.id, index ) : item.description }
+					          			<Editable keyName={KEYS.description} id={item.id} index={index} value={item.description} editMode={item.editMode} changeEvent={this._changeEvent.call( this, index, KEYS.description )} />
 					          		</td>
 					          	</tr>	
 
